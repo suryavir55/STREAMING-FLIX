@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Righteous&family=Russo+One&family=Orbitron:wght@500;700;900&family=Audiowide&family=Rajdhani:wght@500;600;700&family=Teko:wght@500;600;700&family=Black+Ops+One&family=Bungee&family=Bebas+Neue&family=Permanent+Marker&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 215 35% 7%;
+    --foreground: 0 0% 100%;
+    --card: 215 30% 11%;
+    --card-foreground: 0 0% 100%;
+    --popover: 215 30% 9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 176 65% 48%;
+    --primary-foreground: 215 35% 7%;
+    --primary-dark: 176 65% 34%;
+    --secondary: 215 25% 15%;
+    --secondary-foreground: 200 20% 75%;
+    --muted: 215 25% 15%;
+    --muted-foreground: 210 15% 50%;
+    --accent: 38 90% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 30% 18%;
+    --input: 215 25% 15%;
+    --ring: 176 65% 48%;
+    --radius: 0.75rem;
+
+    --glow-primary: 0 0 30px hsla(176, 65%, 48%, 0.5);
+    --glow-accent: 0 0 30px hsla(38, 90%, 55%, 0.5);
+
+    --sidebar-background: 215 35% 7%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 176 65% 48%;
+    --sidebar-primary-foreground: 215 35% 7%;
+    --sidebar-accent: 215 25% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 30% 18%;
+    --sidebar-ring: 176 65% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+  }
+
+  html {
+    background: hsl(var(--background));
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+  
+  :fullscreen {
+    background: black;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  :fullscreen video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+@layer components {
+  .glass-card {
+    background: linear-gradient(135deg, hsla(215, 30%, 11%, 0.9), hsla(215, 35%, 7%, 0.95));
+    border: 1px solid hsla(176, 65%, 48%, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius);
+  }
+
+  .glass-card-strong {
+    background: linear-gradient(145deg, hsla(215, 30%, 11%, 0.95), hsla(215, 35%, 7%, 0.98));
+    border: 1px solid hsla(176, 65%, 48%, 0.3);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 25px 80px hsla(176, 65%, 48%, 0.15), 0 0 100px hsla(0, 0%, 0%, 0.8);
+    border-radius: 24px;
+  }
+
+  .glow-border {
+    border: 1px solid hsla(176, 65%, 48%, 0.4);
+    box-shadow: 0 0 20px hsla(176, 65%, 48%, 0.3);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 40px hsla(176, 65%, 48%, 0.5), 0 0 80px hsla(38, 90%, 55%, 0.3);
+  }
+
+  .btn-glow {
+    box-shadow: 0 8px 30px hsla(176, 65%, 48%, 0.4);
+    transition: all 0.3s ease;
+  }
+  .btn-glow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px hsla(176, 65%, 48%, 0.5);
+  }
+
+  .poster-hover {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .poster-hover:hover {
+    transform: scale(1.08) translateY(-8px);
+    box-shadow: 0 20px 50px hsla(176, 65%, 48%, 0.3);
+    z-index: 10;
+  }
+
+  .category-bar::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent)));
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  /* Video player styles */
+  .player-controls-overlay {
+    background: linear-gradient(to top, hsla(0, 0%, 0%, 0.9) 0%, transparent 40%),
+                linear-gradient(to bottom, hsla(0, 0%, 0%, 0.6) 0%, transparent 20%);
+  }
+
+  .player-glass {
+    background: hsla(215, 35%, 7%, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(176, 65%, 48%, 0.25);
+  }
+
+  .skip-indicator {
+    background: hsla(0, 0%, 0%, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    animation: skipPulse 0.5s ease-out;
+  }
+
+  @keyframes skipPulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .skeleton-loading {
+    background: linear-gradient(90deg, hsl(var(--card)) 25%, hsl(var(--secondary)) 50%, hsl(var(--card)) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @keyframes loadingMove {
+    0% { left: -40%; }
+    100% { left: 100%; }
+  }
+
+  @keyframes logoPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
+  @keyframes runAcross {
+    0% { transform: translateX(-24px); }
+    100% { transform: translateX(96px); }
+  }
+}
