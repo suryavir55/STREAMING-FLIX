@@ -251,7 +251,7 @@ const LoginPage = ({ onLogin }: LoginPageProps) => {
         </p>
         {!isRegister && (
           <p className="text-center text-xs mt-2">
-            <a href={uiConfig.contactLink || "https://t.me/najim_bhai9"} target="_blank" rel="noopener noreferrer" className="text-primary/70 hover:text-primary hover:underline">
+            <a href={uiConfig.contactLink || "https://t.me/NEXTGEN_CINEMA"} target="_blank" rel="noopener noreferrer" className="text-primary/70 hover:text-primary hover:underline">
               Forgot Password? Contact Owner
             </a>
           </p>
