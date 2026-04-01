@@ -1035,7 +1035,7 @@ const PushDebugInfo = () => {
     info["Device ID"] = localStorage.getItem("rs_fcm_device_id") || "not set";
     
     try {
-      const u = JSON.parse(localStorage.getItem("rsanime_user") || "{}");
+      const u = JSON.parse(localStorage.getItem("skanime_user") || "{}");
       info["User ID"] = u.id || "none";
     } catch { info["User ID"] = "error"; }
 
@@ -1054,7 +1054,7 @@ const PushDebugInfo = () => {
 
     // Load token count from Firebase
     try {
-      const u = JSON.parse(localStorage.getItem("rsanime_user") || "{}");
+      const u = JSON.parse(localStorage.getItem("skanime_user") || "{}");
       if (u.id) {
         import("@/lib/firebase").then(({ db, ref, get }) => {
           get(ref(db, `fcmTokens/${u.id}`)).then((snap: any) => {
@@ -1082,7 +1082,7 @@ const PushDebugInfo = () => {
   const handleForceReregister = async () => {
     setReregistering(true);
     try {
-      const u = JSON.parse(localStorage.getItem("rsanime_user") || "{}");
+      const u = JSON.parse(localStorage.getItem("skanime_user") || "{}");
       if (!u.id) {
         toast.error("No user ID found");
         setReregistering(false);
@@ -1136,16 +1136,16 @@ const NotificationToggle = ({ label, desc, defaultOn, storageKey }: { label: str
         if ("Notification" in window && Notification.permission === "default") {
           const permission = await Notification.requestPermission();
           if (permission !== "granted") {
-            toast.error("নোটিফিকেশন অনুমতি দেওয়া হয়নি। ব্রাউজার সেটিংস থেকে Allow করুন।");
+            toast.error("Notification permission has not been granted. Please allow it from your browser settings.।");
             return; // Don't toggle on if not granted
           }
         } else if ("Notification" in window && Notification.permission === "denied") {
-          toast.error("❌ নোটিফিকেশন ব্লক করা আছে! ব্রাউজার Settings → Notifications → Allow করুন।");
+          toast.error("❌ Notifications are blocked! Browser Settings → Notifications → Allow Please do it.।");
           return;
         }
         setEnabled(next);
         localStorage.setItem(storageKey, String(next));
-        const u = JSON.parse(localStorage.getItem("rsanime_user") || "{}");
+        const u = JSON.parse(localStorage.getItem("skanime_user") || "{}");
         if (u?.id) await registerFCMToken(u.id, true);
       } catch {
         setEnabled(!next);
